@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-require 'way_of_working'
+require 'way_of_working/audit/github'
+require 'way_of_working/audit/github/cis_benchmark/rules/all'
 require 'zeitwerk'
 
 loader = Zeitwerk::Loader.for_gem_extension(WayOfWorking::Audit::Github)
@@ -14,22 +15,5 @@ module WayOfWorking
         class Error < StandardError; end
       end
     end
-  end
-
-  module SubCommands
-    # # This reopens the "way_of_working exec" sub command
-    # class Exec
-    #   register(Audit::Github::CisBenchmark::Generators::Exec, 'audit', 'audit',
-    # end
-
-    # # This reopens the "way_of_working init" sub command
-    # class Init
-    #   register(Audit::Github::CisBenchmark::Generators::Init, 'audit', 'audit',
-    # end
-
-    # # This reopens the "way_of_working new" sub command
-    # class New
-    #   register(Audit::Github::CisBenchmark::Generators::New, 'audit', 'audit',
-    # end
   end
 end
