@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 
 # FIXME: Remove this hard-coded link before merging
-gem 'way_of_working', git: 'https://github.com/HealthDataInsight/way_of_working.git', branch: 'feature/v2-wip'
+gem 'way_of_working', git: 'https://github.com/HealthDataInsight/way_of_working.git', branch: 'main'
 gem 'way_of_working-audit-github', git: 'https://github.com/HealthDataInsight/way_of_working-audit-github.git',
                                    branch: 'feature/v1.0.0'
 
