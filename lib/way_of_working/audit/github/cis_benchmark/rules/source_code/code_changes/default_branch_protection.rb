@@ -18,10 +18,8 @@ module WayOfWorking
                   super << :cis_level1
                 end
 
-                def valid?
+                def validate
                   @errors << "No default (#{@repo.default_branch}) branch protection" unless default_branch_ruleset?
-
-                  @errors.empty? ? :passed : :failed
                 end
 
                 def default_branch_ruleset?

@@ -12,7 +12,7 @@ module WayOfWorking
           class Base < ::WayOfWorking::Audit::Github::Rules::Base
             # We are deliberately overiding the default way_of_working tag
             # for CIS Benchmark rules.
-            def tags
+            def self.tags
               [:cis]
             end
           end

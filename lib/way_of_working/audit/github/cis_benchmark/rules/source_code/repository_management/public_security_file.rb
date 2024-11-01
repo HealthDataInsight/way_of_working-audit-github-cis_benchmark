@@ -16,7 +16,7 @@ module WayOfWorking
                   super << :cis_level1
                 end
 
-                def valid?
+                def validate
                   return :not_applicable if @repo.private?
 
                   begin
@@ -24,8 +24,6 @@ module WayOfWorking
                   rescue Octokit::NotFound
                     @errors << 'All public repositories must contain a SECURITY.md file.'
                   end
-
-                  @errors.empty? ? :passed : :failed
                 end
               end
             end
