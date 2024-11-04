@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.authors = ['Tim Gentry']
   spec.email = ['52189+timgentry@users.noreply.github.com']
 
-  spec.summary = 'TODO: Way of Working plugin for audit using github'
+  spec.summary = 'Way of Working plugin for GitHub Audit CIS Benchmark rules'
   spec.homepage = 'https://github.com/HealthDataInsight/way_of_working-audit-github-cis_benchmark'
   spec.license = 'MIT'
   spec.required_ruby_version = '>= 3.1.0'
