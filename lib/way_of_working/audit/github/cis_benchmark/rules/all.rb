@@ -1,2 +1,3 @@
 require_relative 'source_code/code_changes/default_branch_protection'
+require_relative 'source_code/code_changes/previous_pr_approvals_dismissed'
 require_relative 'source_code/repository_management/public_security_file'
