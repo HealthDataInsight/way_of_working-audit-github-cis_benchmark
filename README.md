@@ -1,5 +1,10 @@
 # WayOfWorking::Audit::Github::CisBenchmark
 
+<!-- Way of Working: Main Badge Holder Start -->
+![Way of Working Badge](https://img.shields.io/badge/Way_of_Working-v2.0.1-%238169e3?labelColor=black)
+<!-- Way of Working: Additional Badge Holder Start -->
+<!-- Way of Working: Badge Holder End -->
+
 TODO: Delete this and the text below, and describe your gem
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/way_of_working-audit-github-cis_benchmark`. To experiment with that code, run `bin/console` for an interactive prompt.
@@ -22,7 +27,11 @@ gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
 
 ## Usage
 
-TODO: Write usage instructions here
+To run the GitHub audit in your project, run:
+
+```bash
+way_of_working exec audit
+```
 
 ## Development
 
