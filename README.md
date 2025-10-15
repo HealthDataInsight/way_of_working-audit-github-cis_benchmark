@@ -30,7 +30,7 @@ gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
 To run the GitHub audit in your project, run:
 
 ```bash
-way_of_working exec audit
+way_of_working exec audit_github
 ```
 
 ## Development
