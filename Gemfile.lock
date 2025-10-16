@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/HealthDataInsight/way_of_working-audit-github.git
-  revision: 40175b62a350a77b8d16da407c901af3e5d067af
-  branch: feature/v1.0.0
+  revision: 823881e99c7aaa00555ef6aadf49bcfec4e4535d
+  branch: main
   specs:
-    way_of_working-audit-github (1.0.0)
+    way_of_working-audit-github (1.0.1)
       faraday-multipart (~> 1.0)
       faraday-retry (~> 2.2)
       octokit (~> 9.1)
