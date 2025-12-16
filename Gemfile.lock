@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/HealthDataInsight/way_of_working-audit-github.git
-  revision: 9af9484475d824effcbc96bf92e0a23e2d809e84
+  revision: 3b12d997fbbbad1522bd2534b12af9f48baf9ab3
   branch: feature/public-repo-filter
   specs:
     way_of_working-audit-github (1.0.1)
