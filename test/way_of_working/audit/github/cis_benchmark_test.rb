@@ -7,7 +7,7 @@ module WayOfWorking
     module Github
       class CisBenchmarkTest < Minitest::Test
         def test_that_it_has_a_version_number
-          refute_nil CisBenchmark::VERSION
+          refute_nil ::WayOfWorking::Audit::Github::CisBenchmark::VERSION
         end
       end
     end
