@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 
 # FIXME: Remove this hard-coded link before merging
 gem 'way_of_working-audit-github', git: 'https://github.com/HealthDataInsight/way_of_working-audit-github.git',
-                                   branch: 'main'
+                                   branch: 'feature/public-repo-filter'
 
 # Specify your gem's dependencies in way_of_working-audit-github-cis_benchmark.gemspec
 gemspec
