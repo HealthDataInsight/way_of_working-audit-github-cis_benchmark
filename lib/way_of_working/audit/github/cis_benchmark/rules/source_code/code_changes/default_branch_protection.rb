@@ -19,7 +19,59 @@ module WayOfWorking
                 end
 
                 def validate
-                  @errors << "No default (#{@repo.default_branch}) branch protection" unless default_branch_ruleset?
+                  return if default_branch_ruleset?
+
+                  @errors << "No default (#{@repo.default_branch}) branch protection"
+
+                  return unless fix
+
+                  apply_fix
+                end
+
+                def apply_fix
+                  repo_name = @repo.full_name
+                  $stdout.puts "Applying fix: Creating default branch protection ruleset on #{repo_name}"
+
+                  ruleset_config = {
+                    name: 'Way of Working CIS Default Branch Ruleset',
+                    target: 'branch',
+                    enforcement: 'active',
+                    conditions: {
+                      ref_name: {
+                        exclude: [],
+                        include: ['~DEFAULT_BRANCH']
+                      }
+                    },
+                    rules: [
+                      {
+                        type: 'pull_request',
+                        parameters: {
+                          # required_approving_review_count: 1,
+                          dismiss_stale_reviews_on_push: true,
+                          require_code_owner_review: false,
+                          require_last_push_approval: true,
+                          required_review_thread_resolution: true,
+                          allowed_merge_methods: ['squash']
+                        }
+                      }
+                    ],
+                    bypass_actors: []
+                  }
+
+                  # Use the GitHub API to create the ruleset
+                  response = @client.post("/repos/#{repo_name}/rulesets", ruleset_config)
+                  $stdout.puts "Successfully created ruleset: #{response[:name]} (ID: #{response[:id]})"
+
+                  @errors.clear
+                  @warnings << "Created Default Branch Protection ruleset (ID: #{response[:id]})"
+                rescue Octokit::Error => e
+                  $stderr.puts "Failed to apply fix: #{e.class} - #{e.message}"
+                  $stderr.puts e.backtrace.join("\n") if ENV['DEBUG']
+                  @warnings << "Failed to apply fix: #{e.message}"
+                rescue StandardError => e
+                  $stderr.puts "Unexpected error applying fix: #{e.class} - #{e.message}"
+                  $stderr.puts e.backtrace.join("\n") if ENV['DEBUG']
+                  @warnings << "Unexpected error applying fix: #{e.message}"
                 end
 
                 def default_branch_ruleset?
