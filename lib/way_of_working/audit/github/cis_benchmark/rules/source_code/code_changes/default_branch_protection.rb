@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'way_of_working/audit/github/cis_benchmark/rules/base'
+require 'way_of_working/audit/github/cis_benchmark/rules/concerns/ruleset_finder'
 
 module WayOfWorking
   module Audit
@@ -13,24 +14,28 @@ module WayOfWorking
               # This rule checks branch protection is enforced on the default branch
               # and that it meets or exceeds the required configuration.
               class DefaultBranchProtection < ::WayOfWorking::Audit::Github::CisBenchmark::Rules::Base
+                include Concerns::RulesetFinder
+
                 def tags
                   super << :cis_level1
                 end
 
                 def validate
-                  existing_ruleset = find_default_branch_ruleset
+                  existing_rulesets = find_default_branch_rulesets
 
-                  unless existing_ruleset
+                  if existing_rulesets.empty?
                     @errors << "No default (#{@repo.default_branch}) branch protection"
                     return apply_fix if fix
+
                     return
                   end
 
-                  # Check if the existing ruleset is as good as our fix
-                  unless ruleset_meets_requirements?(existing_ruleset)
-                    @errors << "Default branch protection exists but does not meet requirements"
-                    return apply_fix if fix
-                  end
+                  # Check if any existing ruleset meets requirements
+                  return unless existing_rulesets.none? { |ruleset| ruleset_meets_requirements?(ruleset) }
+
+                  @errors << "Default branch protection exists but does not meet requirements " \
+                             "(found #{existing_rulesets.size} ruleset(s), none meet requirements)"
+                  apply_fix if fix
                 end
 
                 def apply_fix
@@ -42,15 +47,14 @@ module WayOfWorking
                   $stdout.puts "Successfully created ruleset: #{response[:name]} (ID: #{response[:id]})"
 
                   @errors.clear
-                  @warnings << "Created Default Branch Protection ruleset (ID: #{response[:id]})"
                 rescue Octokit::Error => e
-                  $stderr.puts "Failed to apply fix: #{e.class} - #{e.message}"
-                  $stderr.puts e.backtrace.join("\n") if ENV['DEBUG']
-                  @warnings << "Failed to apply fix: #{e.message}"
+                  warn "Failed to apply fix: #{e.class} - #{e.message}"
+                  warn e.backtrace.join("\n") if ENV['DEBUG']
+                  @errors << "Failed to apply fix: #{e.message}"
                 rescue StandardError => e
-                  $stderr.puts "Unexpected error applying fix: #{e.class} - #{e.message}"
-                  $stderr.puts e.backtrace.join("\n") if ENV['DEBUG']
-                  @warnings << "Unexpected error applying fix: #{e.message}"
+                  warn "Unexpected error applying fix: #{e.class} - #{e.message}"
+                  warn e.backtrace.join("\n") if ENV['DEBUG']
+                  @errors << "Unexpected error applying fix: #{e.message}"
                 end
 
                 private
@@ -83,12 +87,6 @@ module WayOfWorking
                   }
                 end
 
-                def find_default_branch_ruleset
-                  rulesets.find do |ruleset|
-                    ruleset.dig(:conditions, :ref_name, :include)&.include?('~DEFAULT_BRANCH')
-                  end
-                end
-
                 def ruleset_meets_requirements?(existing_ruleset)
                   # Check if ruleset is active
                   return false unless existing_ruleset[:enforcement] == 'active'
@@ -111,20 +109,20 @@ module WayOfWorking
                   # Required approving review count must be at least as high as expected
                   required_count = actual_params[:required_approving_review_count] || 0
                   expected_count = expected_params[:required_approving_review_count]
+
                   required_count >= expected_count
                 end
 
                 def check_boolean_requirements(actual_params, expected_params)
                   # These boolean settings must be enabled if required
-                  boolean_checks = [
-                    :dismiss_stale_reviews_on_push,
-                    :require_last_push_approval,
-                    :required_review_thread_resolution
+                  boolean_checks = %i[
+                    dismiss_stale_reviews_on_push
+                    require_last_push_approval
+                    required_review_thread_resolution
                   ]
 
                   boolean_checks.all? do |key|
                     # If expected is true, actual must be true
-                    # If expected is false, actual can be anything
                     !expected_params[key] || actual_params[key]
                   end
                 end

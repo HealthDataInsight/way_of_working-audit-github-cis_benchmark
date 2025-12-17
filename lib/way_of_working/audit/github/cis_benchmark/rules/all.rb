@@ -1,3 +1,4 @@
+require_relative 'source_code/code_changes/branch_deletion_denied'
 require_relative 'source_code/code_changes/default_branch_protection'
 require_relative 'source_code/code_changes/force_push_denied'
 require_relative 'source_code/code_changes/previous_pr_approvals_dismissed'

@@ -20,7 +20,7 @@
 - [ ] Ensure branch protection rules are enforced for administrators (Manual)
 - [ ] Ensure pushing or merging of new code is restricted to specific individuals or teams (Manual)
 - [x] Ensure force push code to branches is denied (Manual)
-- [ ] Ensure branch deletions are denied (Manual)
+- [x] Ensure branch deletions are denied (Manual)
 - [ ] Ensure any merging of code is automatically scanned for risks (Manual)
 - [ ] Ensure any changes to branch protection rules are audited (Manual)
 - [x] Ensure branch protection is enforced on the default branch (Manual)
