@@ -10,7 +10,7 @@ module WayOfWorking
         module Rules
           # This rule checks branch protection is enforced on the default branch.
           class Base < ::WayOfWorking::Audit::Github::Rules::Base
-            # We are deliberately overiding the default way_of_working tag
+            # We are deliberately overriding the default way_of_working tag
             # for CIS Benchmark rules.
             def self.tags
               [:cis]
