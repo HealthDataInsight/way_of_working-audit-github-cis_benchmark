@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-# FIXME: Remove this hard-coded link before merging
+# Temporary: pin way_of_working-audit-github to a git branch until the needed changes are released
 gem 'way_of_working-audit-github', git: 'https://github.com/HealthDataInsight/way_of_working-audit-github.git',
                                    branch: 'feature/public-repo-filter'
 
