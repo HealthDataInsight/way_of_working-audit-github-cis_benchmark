@@ -5,9 +5,8 @@
 <!-- Way of Working: Additional Badge Holder Start -->
 <!-- Way of Working: Badge Holder End -->
 
-TODO: Delete this and the text below, and describe your gem
+Way of Working plugin providing CIS Benchmark audit rules for GitHub repositories.
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/way_of_working-audit-github-cis_benchmark`. To experiment with that code, run `bin/console` for an interactive prompt.
 
 ## Installation
 
