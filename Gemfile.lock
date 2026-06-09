@@ -15,7 +15,6 @@ PATH
   specs:
     way_of_working-audit-github-cis_benchmark (0.1.0)
       way_of_working (~> 2.1)
-      way_of_working-audit-github (~> 1.0)
       zeitwerk (~> 2.6.18)
 
 GEM
