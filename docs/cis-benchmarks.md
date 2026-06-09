@@ -97,7 +97,7 @@
 ### Pipeline Instructions
 
 - [ ] Ensure all build steps are defined as code (Manual)
-- [ ] Ensure steps have clearly defined build stage input and output (Manual)
+- [ ] Ensure steps have well-defined build stage input and output (Manual)
 - [ ] Ensure output is written to a separate, secured storage repository (Manual)
 - [ ] Ensure changes to pipeline files are tracked and reviewed (Manual)
 - [ ] Ensure access to build process triggering is minimized (Manual)
