@@ -2,10 +2,6 @@
 
 source 'https://rubygems.org'
 
-# Temporary: pin way_of_working-audit-github to a git branch until the needed changes are released
-gem 'way_of_working-audit-github', git: 'https://github.com/HealthDataInsight/way_of_working-audit-github.git',
-                                   branch: 'feature/public-repo-filter'
-
 # Specify your gem's dependencies in way_of_working-audit-github-cis_benchmark.gemspec
 gemspec
 

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'way_of_working'
 require 'way_of_working/audit/github'
 require 'way_of_working/audit/github/cis_benchmark/rules/all'
 require 'zeitwerk'
