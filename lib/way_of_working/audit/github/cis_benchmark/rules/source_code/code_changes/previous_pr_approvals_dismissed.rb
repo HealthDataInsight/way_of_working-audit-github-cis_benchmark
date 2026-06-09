@@ -23,10 +23,14 @@ module WayOfWorking
 
                 def previous_approvals_dismissed?
                   rulesets.any? do |ruleset|
-                    ruleset.dig(:conditions, :ref_name, :include).include?('~DEFAULT_BRANCH') &&
-                      ruleset[:rules].any? do |rule|
-                        rule[:type] == 'pull_request' && rule[:parameters][:dismiss_stale_reviews_on_push]
-                      end
+                    includes = ruleset.dig(:conditions, :ref_name, :include)
+                    next false unless includes&.include?('~DEFAULT_BRANCH')
+
+                    ruleset[:rules]&.any? do |rule|
+                      next false unless rule[:type] == 'pull_request'
+
+                      rule.dig(:parameters, :dismiss_stale_reviews_on_push)
+                    end
                   end
                 end
               end
