@@ -17,6 +17,8 @@ module WayOfWorking
               class ForcePushDenied < ::WayOfWorking::Audit::Github::CisBenchmark::Rules::Base
                 include Concerns::RulesetFinder
 
+                RULESET_NAME = 'Way of Working CIS: Force Push Denied'
+
                 def tags
                   super << :cis_level1
                 end
@@ -26,7 +28,7 @@ module WayOfWorking
 
                   if existing_rulesets.empty?
                     @errors << 'No ruleset denying force push to all branches'
-                    return apply_fix if fix
+                    return apply_ruleset_fix if fix
 
                     return
                   end
@@ -36,33 +38,14 @@ module WayOfWorking
 
                   @errors << "Force push is not denied on all branches " \
                              "(found #{existing_rulesets.size} ruleset(s), none deny force push)"
-                  apply_fix if fix
-                end
-
-                def apply_fix
-                  repo_name = @repo.full_name
-                  $stdout.puts "Applying fix: Creating force push prevention ruleset on #{repo_name}"
-
-                  # Use the GitHub API to create the ruleset
-                  response = @client.post("/repos/#{repo_name}/rulesets", required_ruleset_config)
-                  $stdout.puts "Successfully created ruleset: #{response[:name]} (ID: #{response[:id]})"
-
-                  @errors.clear
-                rescue Octokit::Error => e
-                  warn "Failed to apply fix: #{e.class} - #{e.message}"
-                  warn e.backtrace.join("\n") if ENV['DEBUG']
-                  @errors << "Failed to apply fix: #{e.message}"
-                rescue StandardError => e
-                  warn "Unexpected error applying fix: #{e.class} - #{e.message}"
-                  warn e.backtrace.join("\n") if ENV['DEBUG']
-                  @errors << "Unexpected error applying fix: #{e.message}"
+                  apply_ruleset_fix if fix
                 end
 
                 private
 
                 def required_ruleset_config
                   {
-                    name: 'Way of Working CIS Force Push Prevention',
+                    name: RULESET_NAME,
                     target: 'branch',
                     enforcement: 'active',
                     conditions: {
