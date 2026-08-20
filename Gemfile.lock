@@ -86,11 +86,11 @@ GEM
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
-    faraday-multipart (1.0.4)
-      multipart-post (~> 2)
+    faraday-multipart (1.2.0)
+      multipart-post (~> 2.0)
     faraday-net_http (3.3.0)
       net-http
-    faraday-retry (2.2.1)
+    faraday-retry (2.4.0)
       faraday (~> 2.0)
     git (1.19.1)
       addressable (~> 2.8)
@@ -122,7 +122,7 @@ GEM
     method_source (1.1.0)
     mini_mime (1.1.5)
     mini_portile2 (2.8.8)
-    minitest (5.25.1)
+    minitest (5.27.0)
     mocha (2.5.0)
       ruby2_keywords (>= 0.0.5)
     multipart-post (2.4.1)
@@ -274,7 +274,7 @@ GEM
       concurrent-ruby (~> 1.0)
     unicode-display_width (3.1.4)
       unicode-emoji (~> 4.0, >= 4.0.4)
-    unicode-emoji (4.0.4)
+    unicode-emoji (4.2.0)
     uri (1.1.1)
     useragent (0.16.11)
     way_of_working (2.1.0)
