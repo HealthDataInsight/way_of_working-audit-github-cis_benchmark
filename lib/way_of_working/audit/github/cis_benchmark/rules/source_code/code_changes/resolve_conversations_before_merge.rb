@@ -58,8 +58,19 @@ module WayOfWorking
                   { ref_name: { exclude: [], include: ['~DEFAULT_BRANCH'] } }
                 end
 
+                # GitHub's ruleset API requires the full pull_request parameter set on creation,
+                # not just the property this rule cares about.
                 def resolve_conversations_rule
-                  { type: 'pull_request', parameters: { required_review_thread_resolution: true } }
+                  {
+                    type: 'pull_request',
+                    parameters: {
+                      required_approving_review_count: 0,
+                      dismiss_stale_reviews_on_push: false,
+                      require_code_owner_review: false,
+                      require_last_push_approval: false,
+                      required_review_thread_resolution: true
+                    }
+                  }
                 end
 
                 def requires_resolved_conversations?(ruleset)

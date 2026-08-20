@@ -55,8 +55,19 @@ module WayOfWorking
                   { ref_name: { exclude: [], include: ['~DEFAULT_BRANCH'] } }
                 end
 
+                # GitHub's ruleset API requires the full pull_request parameter set on creation,
+                # not just the property this rule cares about.
                 def code_owner_review_rule
-                  { type: 'pull_request', parameters: { require_code_owner_review: true } }
+                  {
+                    type: 'pull_request',
+                    parameters: {
+                      required_approving_review_count: 0,
+                      dismiss_stale_reviews_on_push: false,
+                      require_code_owner_review: true,
+                      require_last_push_approval: false,
+                      required_review_thread_resolution: false
+                    }
+                  }
                 end
 
                 def requires_code_owner_review?(ruleset)
