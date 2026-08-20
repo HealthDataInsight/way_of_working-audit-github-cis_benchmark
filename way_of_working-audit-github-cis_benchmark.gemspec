@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.summary = 'Way of Working plugin for GitHub Audit CIS Benchmark rules'
   spec.homepage = 'https://github.com/HealthDataInsight/way_of_working-audit-github-cis_benchmark'
   spec.license = 'MIT'
-  spec.required_ruby_version = '>= 3.1.0'
+  spec.required_ruby_version = '>= 3.2.0'
 
   spec.metadata['allowed_push_host'] = 'https://rubygems.org'
   spec.metadata['rubygems_mfa_required'] = 'true'
