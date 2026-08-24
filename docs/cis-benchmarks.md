@@ -9,14 +9,14 @@
 - [ ] Ensure any change to code receives approval of two strongly authenticated users (Automated) [L1]
 - [x] Ensure previous approvals are dismissed when updates are introduced to a code change proposal (Manual) [L1]
 - [ ] Ensure there are restrictions on who can dismiss code change reviews (Manual)
-- [ ] Ensure code owners are set for extra sensitive code or configuration (Manual)
-- [ ] Ensure code owner's review is required when a change affects owned code (Manual)
+- [x] Ensure code owners are set for extra sensitive code or configuration (Manual)
+- [x] Ensure code owner's review is required when a change affects owned code (Manual)
 - [ ] Ensure inactive branches are periodically reviewed and removed (Manual)
 - [ ] Ensure all checks have passed before merging new code (Manual)
 - [ ] Ensure open Git branches are up to date before they can be merged into code base (Manual)
-- [ ] Ensure all open comments are resolved before allowing code change merging (Manual)
+- [x] Ensure all open comments are resolved before allowing code change merging (Manual)
 - [ ] Ensure verification of signed commits for new changes before merging (Manual)
-- [ ] Ensure linear history is required (Manual)
+- [x] Ensure linear history is required (Manual)
 - [ ] Ensure branch protection rules are enforced for administrators (Manual)
 - [ ] Ensure pushing or merging of new code is restricted to specific individuals or teams (Manual)
 - [x] Ensure force push code to branches is denied (Manual)

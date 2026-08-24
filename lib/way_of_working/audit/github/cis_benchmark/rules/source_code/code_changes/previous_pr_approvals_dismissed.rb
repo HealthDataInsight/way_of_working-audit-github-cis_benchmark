@@ -56,7 +56,11 @@ module WayOfWorking
                       {
                         type: 'pull_request',
                         parameters: {
-                          dismiss_stale_reviews_on_push: true
+                          required_approving_review_count: 0,
+                          dismiss_stale_reviews_on_push: true,
+                          require_code_owner_review: false,
+                          require_last_push_approval: false,
+                          required_review_thread_resolution: false
                         }
                       }
                     ],
