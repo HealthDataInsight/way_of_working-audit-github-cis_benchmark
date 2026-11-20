@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.summary = 'Way of Working plugin for GitHub Audit CIS Benchmark rules'
   spec.homepage = 'https://github.com/HealthDataInsight/way_of_working-audit-github-cis_benchmark'
   spec.license = 'MIT'
-  spec.required_ruby_version = '>= 3.2.0'
+  spec.required_ruby_version = '>= 3.4.0'
 
   spec.metadata['allowed_push_host'] = 'https://rubygems.org'
   spec.metadata['rubygems_mfa_required'] = 'true'
@@ -34,7 +34,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency 'way_of_working', '~> 2.1'
-  spec.add_dependency 'zeitwerk', '~> 2.6.18'
+  spec.add_dependency 'zeitwerk', '~> 2.6', '>= 2.6.18'
 
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html
